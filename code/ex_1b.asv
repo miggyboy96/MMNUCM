@@ -1,0 +1,36 @@
+% Initial condition
+N0 = [100; 1; 0];
+
+% Constant parameter values
+global gamma mu
+gamma = 0.1;
+mu = 0.01;
+
+% Values of beta
+betas = [0:0.1:2];
+
+% Solving system under different betas
+tspan = [0 50];
+bplot = figure();
+col colormap(bplot,"autumn")
+for i=1:length(betas)
+    global beta
+    beta = betas(i);
+    [t, y] = ode45(@sir_fun, tspan, N0);
+    N = y(:,1) + y(:,2) + y(:,3);
+    D = 101 - N; % Deaths is the loss of individuals from the original popuation size
+    col = [1-i/length(betas) 0 0];
+    hold on
+    plot(t,D, 'LineWidth',1.5) %,'Color', col)
+end
+xlabel('Time since start of epidemic')
+ylabel('Number of deaths')
+qw{1} = plot(nan, 'r','LineWidth',4);
+qw{2} = plot(nan, 'k','LineWidth',4);
+colorbar
+%legend([qw{:}], {'\beta = 0','\beta = 2'}, 'location', 'northwest')
+
+
+
+
+
