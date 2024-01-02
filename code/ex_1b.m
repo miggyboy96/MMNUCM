@@ -12,6 +12,7 @@ betas = [0:0.1:2];
 % Solving system under different betas
 tspan = [0 50];
 palette = flipud(abyss(length(betas)));
+fig_1b = figure('Name','Question 1b');
 for i=1:length(betas)
     global beta
     beta = betas(i);

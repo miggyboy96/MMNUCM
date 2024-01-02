@@ -17,6 +17,7 @@ R = y(:,3);
 N = S + I + R;
 
 % Plot S, I, R over time.
+fig_1a = figure('Name','Question 1a');
 hold on
 plot(t,S,'Color','b','LineWidth',1.5)
 plot(t, I,'Color','r','LineWidth',1.5)
@@ -25,6 +26,5 @@ plot(t, N,'Color','k','LineStyle','--')
 legend('Susceptible S(t)', 'Infected I(t)', 'Recovered R(t)', 'Total N(t)')
 xlabel('Time since start of epidemic')
 ylabel('Amount of individuals')
-
 
 
