@@ -13,6 +13,7 @@ tspan = [0, 50];
 % Plot S, I, R, V over time.
 sir_plot(t, SIR)
 legend('Susceptible', 'Infected', 'Recovered', 'Vaccinated','Total')
+title("Vaccination SIRV")
 
 
 % Number of deaths given different values of nu
@@ -34,3 +35,15 @@ colormap(palette);
 c = colorbar;
 c.Ticks = [0, 0.5, 1];  % Specify the position of ticks (0 at the top, 0.5 in the middle, 1 at the bottom)
 c.TickLabels = {'\nu = 0', '\nu = 5', '\nu = 10'};  % Specify tick labels
+
+% Reinfection
+figure
+globals
+
+% Solve system using ode45
+[t, SIR] = ode45(@reinfect_deter_sir, tspan, N0); % theta = 0.5; the reinfection rate
+
+% Plot S, I, R over time.
+sir_plot(t,SIR)
+legend('Susceptible S(t)', 'Infected I(t)', 'Recovered R(t)', 'Total N(t)')
+title("Reinfection SIRS")
